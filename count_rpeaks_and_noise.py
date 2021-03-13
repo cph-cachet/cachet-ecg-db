@@ -62,7 +62,7 @@ def copy_noise_and_unisnedatafile(data_dir,dest_dir):
 
 
 
-def count_number_of_rpeaks(data_dir):
+def count_number_of_rpeaks(data_dir,result_dir):
     list_of_records = os.listdir(data_dir)
     print(list_of_records)
     # listOfDir= listOfDir.remove(".DS_Store")
@@ -95,6 +95,8 @@ def count_number_of_rpeaks(data_dir):
                     #     number_of_days_recording.remove('.DS_Store')
                     # print(number_of_days_recording)
                     # print("createing hrv of record"+ path+" of" + anonymous_Id + " of " + record)
+
+                    result_path=result_dir+"/" + record + "/" + anonymous_Id + "/" + day
                     file_path = data_dir + "/" + record + "/" + anonymous_Id + "/" + day
                     print(data_dir + "/" + record + "/" + anonymous_Id + "/" + day)
                     with h5py.File(file_path + "/unisensdata.hdf5", "r") as dset:
@@ -119,9 +121,19 @@ def count_number_of_rpeaks(data_dir):
                         noise=0
                         noise_per=0
 
+                    result_df = pd.read_excel(result_path + "/Results.xlsx",usecols=[0, 3, 4, 5, 9, 22, 23, 24, 25, 26, 28, 31])
+                    result_df.index = pd.to_datetime(result_df["Date abs [yyyy-mm-dd]"])
 
-                    df = pd.DataFrame([[record, anonymous_Id,  day,r_peaks,sig_size,noise,noise_per]],
-                                      columns=['record', 'anonymous_Id', "day","r_peaks","signal_length", "noise_length","%noise"])
+                    result_df['NonWearTime []'] = result_df['NonWearTime []'].fillna(0)
+
+                    recording_length = int((result_df.index[-1] - result_df.index[0]).total_seconds())
+                    print(recording_length)
+
+                    #print(result_df['NonWearTime []'].sum(min_count=0))
+                    non_wear_time = result_df['NonWearTime []'].sum()*10
+
+                    df = pd.DataFrame([[record, anonymous_Id,  day,r_peaks,sig_size,noise,noise_per,non_wear_time]],
+                                      columns=['record', 'anonymous_Id', "day","r_peaks","signal_length", "noise_length","%noise","non_wearTime"])
                     if(flag==0):
                          df.to_csv(f, index=False, header=True, line_terminator='\r\n', encoding='utf-8')
                          flag=1
@@ -203,4 +215,4 @@ def count_number_of_rpeaks(data_dir):
 
 
 #copy_noise_and_unisnedatafile("/Users/deku/Desktop/CACHET-AFDB/raw/data_dir","/Users/deku/Desktop/CACHET-AFDB/raw/only_noise_hdf5_files")
-count_number_of_rpeaks( "/Users/deku/Desktop/CACHET-AFDB/raw/only_noise_hdf5_files")
+count_number_of_rpeaks( "/Users/deku/Desktop/CACHET-AFDB/raw/only_noise_hdf5_files", "/Users/deku/Desktop/CACHET-AFDB/result")

@@ -42,29 +42,38 @@ def plotImage(signal, fs):
     plt.show()
 
 
-def combineCACHET_AFDB(src, ecg_data_path):
-    listOfSubjects = os.listdir(src)
+""" 
+
+This code reads the annotation files from one by one from each records and loads corresponding ECG from the raw files from the records
+
+
+annotation_path = " Path of the main folder where all annotation are placed "
+ecg_data_path  =  "Path of the main folder where all the raw ECG is kept "
+output_file_name = " After iterating all the annotations final  data is collected in hdf5  file " 
+
+
+
+"""
+
+
+def read_annotations_and_load_correspondingECG(annotation_path, ecg_data_path, output_file_name):
+    listOfSubjects = os.listdir(annotation_path)
     print(listOfSubjects)
-    # listOfDir= listOfDir.remove(".DS_Store")
 
     LABELS = []
     Signal = []
-    out_dir = "/Users/deku/Desktop/unisens_data/completed/test.hdf5"
 
-    with h5py.File(out_dir, 'w') as f2:
+    with h5py.File(output_file_name, 'w') as f2:
 
         if '.DS_Store' in listOfSubjects:
             listOfSubjects.remove('.DS_Store')
         print(listOfSubjects)
 
-
         for subject in listOfSubjects:
             count = 0
 
-
-
             print("processing  subject" + subject)
-            listOfrecordings = os.listdir(src + "/" + subject)
+            listOfrecordings = os.listdir(annotation_path + "/" + subject)
 
             # if not os.path.exists(screening_images_path+ "/" +subject+"/"):
             #        os.makedirs(screening_images_path+ "/" +subject)
@@ -79,41 +88,33 @@ def combineCACHET_AFDB(src, ecg_data_path):
             if '.DS_Store' in listOfrecordings:
                 listOfrecordings.remove('.DS_Store')
             print(listOfrecordings)
-
+            #
 
             for listOfrecording in listOfrecordings:
                 print("processing recording " + listOfrecording + " of " + subject)
-                records = os.listdir(src + "/" + subject + "/" + listOfrecording)
+                records = os.listdir(annotation_path + "/" + subject + "/" + listOfrecording)
                 print(listOfrecordings)
 
                 if '.DS_Store' in records:
                     records.remove('.DS_Store')
                 print(records)
 
-                AF_LABELS = []
-                AF_Signal = []
-
-                nonAF_LABELS = []
-                nonAF_Signal = []
-
-
-
                 # print(length)
                 for path in records:
-
-
 
                     if '.DS_Store' in records:
                         records.remove('.DS_Store')
                     # print(records)
                     # print("createing hrv of record"+ path+" of" + listOfrecording + " of " + subject)
 
-                    # print(src + "/" + subject + "/" + listOfrecording + "/" + path)
-                    ann_path = src + "/" + subject + "/" + listOfrecording + "/" + path
+                    # print(annotation_path + "/" + subject + "/" + listOfrecording + "/" + path)
+                    ann_path = annotation_path + "/" + subject + "/" + listOfrecording + "/" + path
                     ecg_path = ecg_data_path + "/" + subject + "/" + listOfrecording + "/" + path
 
                     if (os.path.getsize(ann_path + "/annotation.csv") != 0):
                         print(ecg_path)
+
+                        count = 0
 
                         # print(os.path.getsize(ecg_path + '/unisens.xml'))
 
@@ -132,19 +133,19 @@ def combineCACHET_AFDB(src, ecg_data_path):
                             # intersting usecase arround 3600 to 3640
 
                             # end_time =10000
-                            signal = u['ecg.bin']
+                            signal = u['ecg.bin']  # Read the ECG signal from bin file
                             data = signal.get_data()
-                            data = data[0]
-                            # Bandpass Filter for removing Noise
+                            data = data[0]  # Final numpy array containing full days record
 
+                            # Reads the annotation file row by row and  collect the corresponding ECG
                             for index, row in df.iterrows():
-                                #print(str(row[0]) + " " + str(row[1]) + " " + str(row[2]))
-                                start = row[0]
-                                end = row[1]
-                                anno = row[2]
+                                # print(str(row[0]) + " " + str(row[1]) + " " + str(row[2]))
+                                start = row[
+                                    0]  # start index  of 10 seconds segemt  in annotation.csv file of each record
+                                end = row[1]  # end index  of 10 seconds segemt  in annotation.csv
+                                anno = row[2]  # Class label  for the 10 seconds
 
-                                # if anno == 1:
-                                #     print(" annotation 1 " + ecg_path)
+                                # Bandpass Filter for removing Noise
 
                                 bandpass_signal = hp.filter_signal(data[start:end], cutoff=[.5, 40], sample_rate=1024,
                                                                    order=3,
@@ -152,55 +153,48 @@ def combineCACHET_AFDB(src, ecg_data_path):
                                 filtered_signal = hp.smooth_signal(bandpass_signal, sample_rate=1024, polyorder=6)
                                 # print(filtered_signal.size)
 
-                                count = count + 1
+                                if (anno == 1):  # If AF then assign 1 for the whole 10 seconds label lenth
 
-                                if (anno != 3):
+                                    label = np.full((filtered_signal.size), 1,
+                                                    dtype=np.int32)  # make 1 for the length of the signal
 
-                                    Signal = np.concatenate((Signal, filtered_signal), axis=0)
+                                if (anno == 2):
+                                    label = np.full((filtered_signal.size), 2, dtype=np.int32)
 
-                                    if (anno == 1):
+                                if (anno == 3):
+                                    label = np.full((filtered_signal.size), 3, dtype=np.int32)
 
-                                        lab = np.ones(filtered_signal.size, dtype=np.int32)
-                                        AF_Signal = np.concatenate((AF_Signal, filtered_signal), axis=0)
-                                        AF_LABELS = np.concatenate((AF_LABELS, lab), axis=0)
+                                if (anno == 4):
+                                    label = np.full((filtered_signal.size), 4, dtype=np.int32)
 
-                                    else:
-                                        lab = np.zeros(filtered_signal.size, dtype=np.int32)
-                                        nonAF_Signal = np.concatenate((nonAF_Signal, filtered_signal), axis=0)
-                                        nonAF_LABELS = np.concatenate((nonAF_LABELS, lab), axis=0)
-
-                                    # print(anno)
-
-                                    # if (anno == 4):
-
-                                    # plotImage(filtered_signal, fs)
-
+                                Signal = np.concatenate((Signal, filtered_signal), axis=0)  # AF signal array
+                                LABELS = np.concatenate((LABELS, label), axis=0)  # Lable Array
+                                print(str(count) + " --- ")
 
 
                         else:
                             print("Directory does not exist")
 
-                        print(str(count) + " --- ")
+        LABELS = np.full((LABELS.size), 0, dtype=np.int32)
+        f2["Signal"] = Signal
+        f2["LABELS"] = LABELS
+        print("Finished")
+        
+        # final data is store in hdf5 file format with keys as "SIGNAL" and corresponding "LABELS"
+        
+        """
+        The hdf5 can we read using the following code
+        
+        
+        with h5py.File("hdf5 file name saved above", "w") as dset:
+              d.keys()
+              signal = dset["Signal"]
+                    leb_AF = dset["LABELS"]
+            
+        
+        """
 
-                    # f2[subject+'/signal']= np.concatenate(np.array(AF_Signal),np.array(nonAF_Signal))
-
-                f2[subject + listOfrecording + '/AF_Signal'] = AF_Signal
-                f2[subject + listOfrecording + '/AF_LABELS'] = AF_LABELS
-
-                f2[subject + listOfrecording + '/nonAF_Signal'] = nonAF_Signal
-                f2[subject + listOfrecording + '/nonAF_LABELS'] = nonAF_LABELS
-
-                # f2[subject + '/signal'] = np.concatenate((AF_Signal,nonAF_Signal), axis=0)
-                #
-                # f2[subject + '/annotation'] = np.concatenate((AF_LABELS,nonAF_LABELS),axis=0)
-
-                a = np.concatenate((AF_Signal, nonAF_Signal), axis=0)
-                b = np.concatenate((AF_LABELS, nonAF_LABELS), axis=0)
-                # plotImage(a, 1024)
-                print("Finished")
-
-
-        f2.close()
+    f2.close()
 
 
 # image_dest = dest + "/" + subject + "/" + listOfrecording + "/" + path + "/images"
@@ -225,11 +219,8 @@ def combineCACHET_AFDB(src, ecg_data_path):
 #
 
 
-
 def final_CACHET_AFDB(dir, output):
     arr = os.listdir(dir)
-
-
 
     AF_Signal = []
     AF_Labels = []
@@ -237,7 +228,7 @@ def final_CACHET_AFDB(dir, output):
     nonAF_Signal = []
     nonAF_Labels = []
     size = 0
-    Lib=[]
+    Lib = []
     Signal = []
     Labels = []
 
@@ -245,11 +236,7 @@ def final_CACHET_AFDB(dir, output):
         arr.remove('.DS_Store')
     print(arr)
 
-
-
     with h5py.File(output, "w") as f:
-
-
 
         for file in arr:
             print(file)
@@ -260,10 +247,9 @@ def final_CACHET_AFDB(dir, output):
                     sig_AF = dset[name + "/AF_Signal"]
                     leb_AF = dset[name + "/AF_LABELS"]
 
-                    AF_Signal= np.concatenate((np.array(AF_Signal),sig_AF), axis=0)
+                    AF_Signal = np.concatenate((np.array(AF_Signal), sig_AF), axis=0)
 
-
-                    AF_Labels=np.concatenate((np.array(AF_Labels),leb_AF),axis=0)
+                    AF_Labels = np.concatenate((np.array(AF_Labels), leb_AF), axis=0)
 
                     # Lib =Lib+leb
 
@@ -277,23 +263,18 @@ def final_CACHET_AFDB(dir, output):
                     nonAF_Labels = np.concatenate((np.array(nonAF_Labels), leb_nonAF), axis=0)
 
         print(" HEllo")
-        f['Signal'] =  np.concatenate((AF_Signal,nonAF_Signal),axis=0)
-        f['Labels'] = np.concatenate((AF_Labels,nonAF_Labels),axis=0)
-        f['nonAF_Signal']= nonAF_Signal
+        f['Signal'] = np.concatenate((AF_Signal, nonAF_Signal), axis=0)
+        f['Labels'] = np.concatenate((AF_Labels, nonAF_Labels), axis=0)
+        f['nonAF_Signal'] = nonAF_Signal
         f['nonAF_Labels'] = nonAF_Labels
-
-
 
     #     Signal = np.concatenate((np.array(AF_Signal), np.array(nonAF_Signal)), axis=0)
     #     labels= np.concatenate((np.array(AF_Labels), np.array(nonAF_Labels)), axis=0
     # f['Signal'] = Signal
     # f['Labels'] =
 
-
-
     f.close()
     pass
-
 
 
 def count_total(src):
@@ -311,14 +292,13 @@ def count_total(src):
     # count_others=0
 
     count = 0
+    count_af = 0
+    count_nsr = 0
+    count_noise = 0
+    count_others = 0
 
     for subject in listOfSubjects:
 
-
-        count_af = 0
-        count_nsr = 0
-        count_noise = 0
-        count_others = 0
         print("processing  subject" + subject)
         listOfrecordings = os.listdir(src + "/" + subject)
 
@@ -345,7 +325,7 @@ def count_total(src):
 
                 # print(src + "/" + subject + "/" + listOfrecording + "/" + path)
                 ann_path = src + "/" + subject + "/" + listOfrecording + "/" + path
-                #ecg_path = ecg_data_path + "/" + subject + "/" + listOfrecording + "/" + path
+                # ecg_path = ecg_data_path + "/" + subject + "/" + listOfrecording + "/" + path
 
                 if (os.path.getsize(ann_path + "/annotation.csv") != 0):
                     df = pd.read_csv(ann_path + "/annotation.csv", header=None)
@@ -353,7 +333,7 @@ def count_total(src):
                     # Bandpass Filter for removing Noise
 
                     for index, row in df.iterrows():
-                        #print(str(row[0]) + " " + str(row[1]) + " " + str(row[2]))
+                        # print(str(row[0]) + " " + str(row[1]) + " " + str(row[2]))
                         start = row[0]
                         end = row[1]
                         anno = row[2]
@@ -369,21 +349,23 @@ def count_total(src):
 
                         if (anno == 4):
                             count_others = count_others + 1
-        print(ann_path)
+        # print(ann_path)
+        # print(" AF= " + str(count_af))
+        # print(" NSR= " + str(count_nsr))
+        # print(" Noise= " + str(count_noise))
+        # print(" Others= " + str(count_others))
+        #
+        # if count_af!=0:
+        #     count+=1
+
         print(" AF= " + str(count_af))
         print(" NSR= " + str(count_nsr))
         print(" Noise= " + str(count_noise))
         print(" Others= " + str(count_others))
 
-        if count_af!=0:
-            count+=1
-
-    print(" AF= " + str(count_af))
-    print(" NSR= " + str(count_nsr))
-    print(" Noise= " + str(count_noise))
-    print(" Others= " + str(count_others))
-
     print(count)
+
+
 def count_undividual_record(src):
     listOfSubjects = os.listdir(src)
     print(listOfSubjects)
@@ -402,7 +384,6 @@ def count_undividual_record(src):
 
     for subject in listOfSubjects:
 
-
         count_af = 0
         count_nsr = 0
         count_noise = 0
@@ -433,7 +414,7 @@ def count_undividual_record(src):
 
                 # print(src + "/" + subject + "/" + listOfrecording + "/" + path)
                 ann_path = src + "/" + subject + "/" + listOfrecording + "/" + path
-                #ecg_path = ecg_data_path + "/" + subject + "/" + listOfrecording + "/" + path
+                # ecg_path = ecg_data_path + "/" + subject + "/" + listOfrecording + "/" + path
 
                 if (os.path.getsize(ann_path + "/annotation.csv") != 0):
                     df = pd.read_csv(ann_path + "/annotation.csv", header=None)
@@ -441,7 +422,7 @@ def count_undividual_record(src):
                     # Bandpass Filter for removing Noise
 
                     for index, row in df.iterrows():
-                        #print(str(row[0]) + " " + str(row[1]) + " " + str(row[2]))
+                        # print(str(row[0]) + " " + str(row[1]) + " " + str(row[2]))
                         start = row[0]
                         end = row[1]
                         anno = row[2]
@@ -463,8 +444,8 @@ def count_undividual_record(src):
         print(" Noise= " + str(count_noise))
         print(" Others= " + str(count_others))
 
-        if count_af!=0:
-            count+=1
+        if count_af != 0:
+            count += 1
 
     print(" AF= " + str(count_af))
     print(" NSR= " + str(count_nsr))
@@ -472,13 +453,18 @@ def count_undividual_record(src):
     print(" Others= " + str(count_others))
 
     print(count)
+
+
 #
 #
-# combineCACHET_AFDB("/Users/deku/Desktop/unisens_data/completed/final/",
-#                     "/Users/deku/Desktop/unisens_data/completed/cachet_afdb/")
+read_annotations_and_load_correspondingECG("/Users/deku/Desktop/unisens_data/completed/final/",
+                                           "/Users/deku/Desktop/unisens_data/completed/cachet_afdb/",
+                                           "/Users/deku/Desktop/unisens_data/completed/cachet_afdb/new_nsr.hdf5")
 
-count_undividual_record("/Users/deku/Desktop/unisens_data/final_annotation/CACHET-AFDB-01-03-2021/V1")
+# count_undividual_record("/Users/deku/Desktop/unisens_data/final_annotation/CACHET-AFDB-01-03-2021/V1")
 
-count_total("/Users/deku/Desktop/unisens_data/final_annotation/CACHET-AFDB-01-03-2021/V1")
+# count_total("/Users/deku/Desktop/CACHET-AFDB/ECG_annotations/V1")
 
-#final_CACHET_AFDB("/Users/deku/Desktop/unisens_data/completed/done/finaldata/","/Users/deku/Desktop/unisens_data/completed/done/CACHET-AFDB.hdf5")
+# count_total("/Users/deku/Desktop/unisens_data/final_annotation/original")
+
+# final_CACHET_AFDB("/Users/deku/Desktop/unisens_data/completed/done/finaldata/","/Users/deku/Desktop/unisens_data/completed/done/CACHET-AFDB.hdf5")
