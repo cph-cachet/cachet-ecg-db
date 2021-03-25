@@ -150,36 +150,36 @@ def read_annotations_and_load_correspondingECG(annotation_path, ecg_data_path, o
     f2.close()
 
 
-
-def test():
-    
-    # with h5py.File("/Users/deku/Documents/development/deep_learning/dl_and_context/data/cachet/CACHET-AFDB.hdf5", "r") as dset:
-    # 
-    #        print(dset.keys())
-    #        signal = dset["Signal"]
-    #        leb_AF = dset["LABELS"]
-
-    with h5py.File("/Users/deku/Documents/development/deep_learning/dl_and_context/data/cachet/CACHET-AFDB.hdf5", "r") as dset:
-                   print(dset.keys())
-                   signal = dset["Signal"][:7649279]
-                   labels = dset["Labels"][:7649279]
-                   with h5py.File("/Users/deku/Documents/development/deep_learning/dl_and_context/data/cachet/nsr_from_new_annotations.hdf5","r") as f:
-                         print(f.keys())
-                         nsr_signal = f["Signal"]
-                         nsr_lebels = f["Labels"]
-                         print("hello")
-
-                         final = h5py.File("/Users/deku/Documents/development/deep_learning/dl_and_context/data/cachet/CACHET-AFBD-final.hdf5", 'w')
-
-
-                         final_sig= np.concatenate((signal,nsr_signal),axis=0)
-                         final_label= np.concatenate((labels, nsr_lebels), axis=0)
-                         final['Signal']= np.concatenate((signal,nsr_signal),axis=0)
-                         final['Labels'] = np.concatenate((labels, nsr_lebels), axis=0)
-                         final.close()
-
-
-test()
+#
+# def test():
+#
+#     # with h5py.File("/Users/deku/Documents/development/deep_learning/dl_and_context/data/cachet/CACHET-AFDB.hdf5", "r") as dset:
+#     #
+#     #        print(dset.keys())
+#     #        signal = dset["Signal"]
+#     #        leb_AF = dset["LABELS"]
+#
+#     with h5py.File("/Users/deku/Documents/development/deep_learning/dl_and_context/data/cachet/CACHET-AFDB.hdf5", "r") as dset:
+#                    print(dset.keys())
+#                    signal = dset["Signal"][:7649279]
+#                    labels = dset["Labels"][:7649279]
+#                    with h5py.File("/Users/deku/Documents/development/deep_learning/dl_and_context/data/cachet/nsr_from_new_annotations.hdf5","r") as f:
+#                          print(f.keys())
+#                          nsr_signal = f["Signal"]
+#                          nsr_lebels = f["Labels"]
+#                          print("hello")
+#
+#                          final = h5py.File("/Users/deku/Documents/development/deep_learning/dl_and_context/data/cachet/CACHET-AFBD-final.hdf5", 'w')
+#
+#
+#                          final_sig= np.concatenate((signal,nsr_signal),axis=0)
+#                          final_label= np.concatenate((labels, nsr_lebels), axis=0)
+#                          final['Signal']= np.concatenate((signal,nsr_signal),axis=0)
+#                          final['Labels'] = np.concatenate((labels, nsr_lebels), axis=0)
+#                          final.close()
+#
+#
+# test()
 
 
 

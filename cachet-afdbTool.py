@@ -457,13 +457,13 @@ def count_undividual_record(src):
 
 #
 #
-read_annotations_and_load_correspondingECG("/Users/deku/Desktop/unisens_data/completed/final/",
-                                           "/Users/deku/Desktop/unisens_data/completed/cachet_afdb/",
-                                           "/Users/deku/Desktop/unisens_data/completed/cachet_afdb/new_nsr.hdf5")
+# read_annotations_and_load_correspondingECG("/Users/deku/Desktop/unisens_data/completed/final/",
+#                                            "/Users/deku/Desktop/unisens_data/completed/cachet_afdb/",
+#                                            "/Users/deku/Desktop/unisens_data/completed/cachet_afdb/new_nsr.hdf5")
 
 # count_undividual_record("/Users/deku/Desktop/unisens_data/final_annotation/CACHET-AFDB-01-03-2021/V1")
 
-# count_total("/Users/deku/Desktop/CACHET-AFDB/ECG_annotations/V1")
+count_total("/Users/deku/Desktop/CACHET-AFDB/ECG_annotations/V1")
 
 # count_total("/Users/deku/Desktop/unisens_data/final_annotation/original")
 
