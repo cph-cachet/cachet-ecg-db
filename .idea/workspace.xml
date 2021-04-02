@@ -7,7 +7,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/cachet-db-scripts.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/cachet-db-scripts.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cachet-afdbTool.py" beforeDir="false" afterPath="$PROJECT_DIR$/cachet-afdbTool.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cachet-afdbTool.py" beforeDir="false" afterPath="$PROJECT_DIR$/CACHET-CADB-analysisTool.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/read_annotations_and_load_corresponding_ECG.py" beforeDir="false" afterPath="$PROJECT_DIR$/read_annotations_and_load_corresponding_ECG.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,7 +44,7 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.read_annotations_and_load_corresponding_ECG">
-    <configuration name="cachet-afdbTool" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+    <configuration name="CACHET-CADB-analysisTool" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="cachet-db-scripts" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -57,7 +57,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/cachet-afdbTool.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CACHET-CADB-analysisTool.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -200,12 +200,12 @@
     </configuration>
     <list>
       <item itemvalue="Python.main" />
-      <item itemvalue="Python.cachet-afdbTool" />
       <item itemvalue="Python.count_rpeaks_and_noise" />
       <item itemvalue="Python.read_annotations_and_load_corresponding_ECG" />
       <item itemvalue="Python.compare_annotatios_of_two_cardiologists" />
       <item itemvalue="Python.mearge_reulstxmls_and_annotationcvs" />
       <item itemvalue="Python.create_empty_annotations_file" />
+      <item itemvalue="Python.CACHET-CADB-analysisTool" />
     </list>
     <recent_temporary>
       <list>
@@ -230,7 +230,7 @@
       <workItem from="1615745023967" duration="471000" />
       <workItem from="1616437053606" duration="17000" />
       <workItem from="1616500530201" duration="2832000" />
-      <workItem from="1617371511004" duration="16572000" />
+      <workItem from="1617371511004" duration="16966000" />
     </task>
     <servers />
   </component>
@@ -258,7 +258,7 @@
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/cachet-afdbTool.py</url>
+          <url>file://$PROJECT_DIR$/CACHET-CADB-analysisTool.py</url>
           <line>180</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
@@ -273,7 +273,7 @@
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/cachet-afdbTool.py</url>
+          <url>file://$PROJECT_DIR$/CACHET-CADB-analysisTool.py</url>
           <line>316</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
