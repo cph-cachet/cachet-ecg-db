@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e750f9f9-d0c8-4969-9f83-4b33f0b33eb7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/trimm_Unisens_record.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/create_empty_annotations_file.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mearge_reulstxmls_and_annotationcvs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/cachet-db-scripts.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/cachet-db-scripts.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cachet-afdbTool.py" beforeDir="false" afterPath="$PROJECT_DIR$/cachet-afdbTool.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/read_annotations_and_load_corresponding_ECG.py" beforeDir="false" afterPath="$PROJECT_DIR$/read_annotations_and_load_corresponding_ECG.py" afterDir="false" />
@@ -33,43 +36,22 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.cachet-afdbTool">
-    <configuration name="auto-corealtion_noise detector_and_HRVcalculation" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.read_annotations_and_load_corresponding_ECG">
+    <configuration name="cachet-afdbTool" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="cachet-db-scripts" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/auto-corealtion_noise detector_and_HRVcalculation.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="cachet-afdbTool" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="cachet-db-scripts" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="$PROJECT_DIR$/../dl_and_context/evironment/bin/python" />
+      <option name="SDK_HOME" value="$USER_HOME$/.conda/envs/dl_and_context/new_env/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -128,6 +110,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="create_empty_annotations_file" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="cachet-db-scripts" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/create_empty_annotations_file.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="cachet-db-scripts" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -142,6 +146,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="mearge_reulstxmls_and_annotationcvs" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="cachet-db-scripts" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mearge_reulstxmls_and_annotationcvs.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -174,19 +200,20 @@
     </configuration>
     <list>
       <item itemvalue="Python.main" />
-      <item itemvalue="Python.auto-corealtion_noise detector_and_HRVcalculation" />
       <item itemvalue="Python.cachet-afdbTool" />
       <item itemvalue="Python.count_rpeaks_and_noise" />
       <item itemvalue="Python.read_annotations_and_load_corresponding_ECG" />
       <item itemvalue="Python.compare_annotatios_of_two_cardiologists" />
+      <item itemvalue="Python.mearge_reulstxmls_and_annotationcvs" />
+      <item itemvalue="Python.create_empty_annotations_file" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.cachet-afdbTool" />
+        <item itemvalue="Python.read_annotations_and_load_corresponding_ECG" />
+        <item itemvalue="Python.create_empty_annotations_file" />
+        <item itemvalue="Python.mearge_reulstxmls_and_annotationcvs" />
         <item itemvalue="Python.compare_annotatios_of_two_cardiologists" />
         <item itemvalue="Python.count_rpeaks_and_noise" />
-        <item itemvalue="Python.read_annotations_and_load_corresponding_ECG" />
-        <item itemvalue="Python.auto-corealtion_noise detector_and_HRVcalculation" />
       </list>
     </recent_temporary>
   </component>
@@ -202,7 +229,8 @@
       <workItem from="1615584772564" duration="10620000" />
       <workItem from="1615745023967" duration="471000" />
       <workItem from="1616437053606" duration="17000" />
-      <workItem from="1616500530201" duration="2246000" />
+      <workItem from="1616500530201" duration="2832000" />
+      <workItem from="1617371511004" duration="16572000" />
     </task>
     <servers />
   </component>
@@ -236,23 +264,30 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/read_annotations_and_load_corresponding_ECG.py</url>
-          <line>169</line>
-          <option name="timeStamp" value="20" />
+          <line>217</line>
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/read_annotations_and_load_corresponding_ECG.py</url>
-          <line>178</line>
-          <option name="timeStamp" value="21" />
+          <line>205</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/cachet-afdbTool.py</url>
+          <line>316</line>
+          <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/cachet_db_scripts$count_rpeaks_and_noise.coverage" NAME="count_rpeaks_and_noise Coverage Results" MODIFIED="1616605477061" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/cachet_db_scripts$cachet_afdbTool.coverage" NAME="cachet-afdbTool Coverage Results" MODIFIED="1616605622063" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/cachet_db_scripts$cachet_afdbTool.coverage" NAME="cachet-afdbTool Coverage Results" MODIFIED="1617395587173" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/cachet_db_scripts$create_empty_annotations_file.coverage" NAME="create_empty_annotations_file Coverage Results" MODIFIED="1617386602856" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/cachet_db_scripts$auto_corealtion_noise_detector_and_HRVcalculation.coverage" NAME="auto-corealtion_noise detector_and_HRVcalculation Coverage Results" MODIFIED="1615136503617" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/cachet_db_scripts$main.coverage" NAME="main Coverage Results" MODIFIED="1615078764156" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/cachet_db_scripts$compare_annotatios_of_two_cardiologists.coverage" NAME="compare_annotatios_of_two_cardiologists Coverage Results" MODIFIED="1616605590699" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/cachet_db_scripts$read_annotations_and_load_corresponding_ECG.coverage" NAME="read_annotations_and_load_corresponding_ECG Coverage Results" MODIFIED="1615597890545" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/cachet_db_scripts$mearge_reulstxmls_and_annotationcvs.coverage" NAME="mearge_reulstxmls_and_annotationcvs Coverage Results" MODIFIED="1617380724940" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/cachet_db_scripts$read_annotations_and_load_corresponding_ECG.coverage" NAME="read_annotations_and_load_corresponding_ECG Coverage Results" MODIFIED="1617396030214" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

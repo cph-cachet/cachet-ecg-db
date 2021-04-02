@@ -5,8 +5,7 @@ import h5py
 import pandas as pd
 import unisens
 import heartpy as hp
-import  numpy as np
-
+import numpy as np
 
 
 def read_annotations_and_load_correspondingECG(annotation_path, ecg_data_path, output_file_name):
@@ -41,6 +40,7 @@ def read_annotations_and_load_correspondingECG(annotation_path, ecg_data_path, o
             if '.DS_Store' in listOfrecordings:
                 listOfrecordings.remove('.DS_Store')
             print(listOfrecordings)
+            listOfrecordings[:] = [x for x in listOfrecordings if ".json" not in x]
             #
 
             for listOfrecording in listOfrecordings:
@@ -122,7 +122,7 @@ def read_annotations_and_load_correspondingECG(annotation_path, ecg_data_path, o
 
                                 Signal = np.concatenate((Signal, filtered_signal), axis=0)  # AF signal array
                                 LABELS = np.concatenate((LABELS, label), axis=0)  # Lable Array
-                                print(str(count) + " --- ")
+                                #print(str(count) + " --- ")
 
 
                         else:
@@ -150,43 +150,86 @@ def read_annotations_and_load_correspondingECG(annotation_path, ecg_data_path, o
     f2.close()
 
 
-#
-# def test():
-#
-#     # with h5py.File("/Users/deku/Documents/development/deep_learning/dl_and_context/data/cachet/CACHET-AFDB.hdf5", "r") as dset:
-#     #
-#     #        print(dset.keys())
-#     #        signal = dset["Signal"]
-#     #        leb_AF = dset["LABELS"]
-#
-#     with h5py.File("/Users/deku/Documents/development/deep_learning/dl_and_context/data/cachet/CACHET-AFDB.hdf5", "r") as dset:
-#                    print(dset.keys())
-#                    signal = dset["Signal"][:7649279]
-#                    labels = dset["Labels"][:7649279]
-#                    with h5py.File("/Users/deku/Documents/development/deep_learning/dl_and_context/data/cachet/nsr_from_new_annotations.hdf5","r") as f:
-#                          print(f.keys())
-#                          nsr_signal = f["Signal"]
-#                          nsr_lebels = f["Labels"]
-#                          print("hello")
-#
-#                          final = h5py.File("/Users/deku/Documents/development/deep_learning/dl_and_context/data/cachet/CACHET-AFBD-final.hdf5", 'w')
-#
-#
-#                          final_sig= np.concatenate((signal,nsr_signal),axis=0)
-#                          final_label= np.concatenate((labels, nsr_lebels), axis=0)
-#                          final['Signal']= np.concatenate((signal,nsr_signal),axis=0)
-#                          final['Labels'] = np.concatenate((labels, nsr_lebels), axis=0)
-#                          final.close()
-#
-#
-# test()
+def get_gender_and_age(signal_folder_path):
+    print("Get gender an age")
+
+    listOfSubjects = os.listdir(signal_folder_path)
+    print(listOfSubjects)
+
+    LABELS = []
+    Signal = []
+
+    if '.DS_Store' in listOfSubjects:
+        listOfSubjects.remove('.DS_Store')
+    print(listOfSubjects)
+
+    male=0
+    female=0
+    age=0
+    count=0
+
+    for subject in listOfSubjects:
+
+        flag=0
+
+        print("processing  subject" + subject)
+        listOfrecordings = os.listdir(signal_folder_path + "/" + subject)
+
+        if '.DS_Store' in listOfrecordings:
+            listOfrecordings.remove('.DS_Store')
+        print(listOfrecordings)
+        listOfrecordings[:] = [x for x in listOfrecordings if ".json" not in x]
+        #
+
+        for listOfrecording in listOfrecordings:
+            print("processing recording " + listOfrecording + " of " + subject)
+            records = os.listdir(signal_folder_path + "/" + subject + "/" + listOfrecording)
+            print(listOfrecordings)
+
+            if '.DS_Store' in records:
+                records.remove('.DS_Store')
+            print(records)
+
+            # print(length)
+            for path in records:
+
+                if '.DS_Store' in records:
+                    records.remove('.DS_Store')
+                ecg_path = signal_folder_path + "/" + subject + "/" + listOfrecording + "/" + path
+                #print(ecg_path)
+
+                u = unisens.Unisens(ecg_path, readonly=True)
+                customAttributes = u.entries['customAttributes']
+
+                if(flag==0):
+                 count+=1
+                 age = age + float(customAttributes.age)
+                 print(customAttributes.gender)
+                 if(customAttributes.gender=='F'):
+                     female+=1
+                 else:
+                      male+=1
+
+
+                 print(customAttributes.age)
+                 flag=1
+    print("Male"+str(male))
+    print("Female"+str(female))
+    print("Avg Age"+ str(age/count))
 
 
 
-path_of_annotations_folder="/Users/deku/Desktop/unisens_data/completed/final/"
-path_of_rawdata_folder= "/Users/deku/Desktop/unisens_data/completed/cachet_afdb/"
-resulting_hdf5_file_with_annotations_signal="/Users/deku/Desktop/unisens_data/completed/cachet_afdb/nsr_from_new_annotations.hdf5"
-#
-# read_annotations_and_load_correspondingECG(path_of_annotations_folder,
-#                                            path_of_rawdata_folder,
-#                                            resulting_hdf5_file_with_annotations_signal)
+
+
+
+
+
+
+path_of_annotations_folder = "/Users/deku/Desktop/CACHET-AFDB/FINAL/annotations"
+path_of_rawdata_folder = "/Users/deku/Desktop/CACHET-AFDB/FINAL/signal"
+resulting_hdf5_file_with_annotations_signal = "/Users/deku/Desktop/CACHET-AFDB/FINAL/CACHET-AFDB_short_format_without_context.hdf5"
+
+#read_annotations_and_load_correspondingECG(path_of_annotations_folder, path_of_rawdata_folder,resulting_hdf5_file_with_annotations_signal)
+
+
+get_gender_and_age(path_of_rawdata_folder)
