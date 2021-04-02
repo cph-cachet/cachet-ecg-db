@@ -74,7 +74,7 @@ def read_annotations_and_load_correspondingECG(annotation_path, ecg_data_path, o
                         if os.path.exists(ecg_path):
                             print("Directory exist")
 
-                            df = pd.read_csv(ann_path + "/annotation.csv", header=None)
+                            df = pd.read_csv(ann_path + "/annotation.csv", header=0)
 
                             u = unisens.Unisens(ecg_path, readonly=True)
                             # /Users/deku/PycharmProjects/AF/u1t2m3@cachet.dk/

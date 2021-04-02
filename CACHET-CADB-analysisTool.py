@@ -121,7 +121,7 @@ def read_annotations_and_load_correspondingECG(annotation_path, ecg_data_path, o
                         if os.path.exists(ecg_path):
                             print("Directory exist")
 
-                            df = pd.read_csv(ann_path + "/annotation.csv", header=None)
+                            df = pd.read_csv(ann_path + "/annotation.csv", header=0)
 
                             u = unisens.Unisens(ecg_path, readonly=True)
                             # /Users/deku/PycharmProjects/AF/u1t2m3@cachet.dk/
@@ -332,7 +332,7 @@ def count_total(src):
                 # ecg_path = ecg_data_path + "/" + subject + "/" + listOfrecording + "/" + path
 
                 if (os.path.getsize(ann_path + "/annotation.csv") != 0):
-                    df = pd.read_csv(ann_path + "/annotation.csv", header=None)
+                    df = pd.read_csv(ann_path + "/annotation.csv", header=0)
 
                     # Bandpass Filter for removing Noise
 
@@ -432,7 +432,7 @@ def count_annotation_type_in_each_record(src):
                 # ecg_path = ecg_data_path + "/" + subject + "/" + listOfrecording + "/" + path
 
                 if (os.path.getsize(ann_path + "/annotation.csv") != 0):
-                    df = pd.read_csv(ann_path + "/annotation.csv", header=None)
+                    df = pd.read_csv(ann_path + "/annotation.csv", header=0)
 
                     # Bandpass Filter for removing Noise
 
@@ -549,7 +549,7 @@ def read_annotations_and_load_correspondingECG(annotation_path, ecg_data_path, o
                         if os.path.exists(ecg_path):
                             print("Directory exist")
 
-                            df = pd.read_csv(ann_path + "/annotation.csv", header=None)
+                            df = pd.read_csv(ann_path + "/annotation.csv", header=0)
 
                             u = unisens.Unisens(ecg_path, readonly=True)
                             # /Users/deku/PycharmProjects/AF/u1t2m3@cachet.dk/
@@ -711,15 +711,14 @@ def get_gender_and_age(signal_folder_path):
 path_of_annotations_folder = "/Users/deku/Desktop/CACHET-AFDB/FINAL/annotations"
 path_of_rawdata_folder = "/Users/deku/Desktop/CACHET-AFDB/FINAL/signal"
 CACHET_CADB_without_context  = "/Users/deku/Desktop/CACHET-AFDB/FINAL/CACHET-AFDB_short_format_without_context.hdf5"
-
-
-
+#
+#
 read_annotations_and_load_correspondingECG(path_of_annotations_folder, path_of_rawdata_folder,CACHET_CADB_without_context)
+#
+#
+#get_gender_and_age(path_of_rawdata_folder)
+#
+#count_annotation_type_in_each_record("/Users/deku/Desktop/CACHET-AFDB/FINAL/annotations")
 
-
-get_gender_and_age(path_of_rawdata_folder)
-
-count_annotation_type_in_each_record("/Users/deku/Desktop/CACHET-AFDB/FINAL/annotations")
-
-count_total("/Users/deku/Desktop/CACHET-AFDB/FINAL/annotations")
+#count_total("/Users/deku/Desktop/CACHET-AFDB/FINAL/annotations")
 
