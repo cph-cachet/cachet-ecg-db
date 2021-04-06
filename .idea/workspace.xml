@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e750f9f9-d0c8-4969-9f83-4b33f0b33eb7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/cachet_cadb_utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CACHET-CADB-analysisTool.py" beforeDir="false" afterPath="$PROJECT_DIR$/cachet-cadb_analysisMain.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auto-corealtion_noise detector_and_HRVcalculation.py" beforeDir="false" afterPath="$PROJECT_DIR$/others/auto-corealtion_noise detector_and_HRVcalculation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compare_annotatios_of_two_cardiologists.py" beforeDir="false" afterPath="$PROJECT_DIR$/others/compare_annotatios_of_two_cardiologists.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/count_rpeaks_and_noise.py" beforeDir="false" afterPath="$PROJECT_DIR$/others/count_rpeaks_and_noise.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/create_empty_annotations_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/others/create_empty_annotations_file.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mearge_reulstxmls_and_annotationcvs.py" beforeDir="false" afterPath="$PROJECT_DIR$/others/mearge_reulstxmls_and_annotationcvs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/read_annotations_and_load_corresponding_ECG.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/trimm_Unisens_record.py" beforeDir="false" afterPath="$PROJECT_DIR$/trimm_Unisens_record.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,7 +228,7 @@
       <workItem from="1615745023967" duration="471000" />
       <workItem from="1616437053606" duration="17000" />
       <workItem from="1616500530201" duration="2832000" />
-      <workItem from="1617371511004" duration="33980000" />
+      <workItem from="1617371511004" duration="34272000" />
     </task>
     <servers />
   </component>
