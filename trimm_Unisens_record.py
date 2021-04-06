@@ -23,7 +23,7 @@ def __init__(self, **kwargs):
     super().__init__(**kwargs)
 
 
-# dir = "/Users/deku/Desktop/unisens_data"
+# dir = "/Users\\deku\\Desktop\\unisens_data"
 
 def trimUnisensdata(dataDir, outputDir, segment_length_in_hours):
     # List of directory
@@ -40,12 +40,12 @@ def trimUnisensdata(dataDir, outputDir, segment_length_in_hours):
     print(listOfDir)
     for dir in listOfDir:
         print("Processing ---" + dir)
-        listOfInnerDir = os.listdir(dataDir + dir + "/")
+        listOfInnerDir = os.listdir(dataDir + dir + "\\")
         if '.DS_Store' in listOfInnerDir:
             listOfInnerDir.remove('.DS_Store')
 
         for inner_dir in listOfInnerDir:
-            unisens_input_dir = dataDir + dir + "/" + inner_dir + "/"
+            unisens_input_dir = dataDir + dir + "\\" + inner_dir + "\\"
             u = unisens.Unisens(unisens_input_dir, readonly=True)
 
             print(u)
@@ -137,8 +137,8 @@ def trimUnisensdata(dataDir, outputDir, segment_length_in_hours):
                 (new_date_from_midnight - date_object.replace(microsecond=0)).total_seconds())
 
             recordName = inner_dir  # u.get_attrib('measurementId')
-            # root_dir = "/Users/deku/Desktop/unisens_data/"
-            root_dir = outputDir + dir + "/"
+            # root_dir = "\\Users\\deku\\Desktop\\unisens_data\\"
+            root_dir = outputDir + dir + "\\"
             # create new directory for each subject and place sliced records in each
             if not os.path.exists(root_dir + recordName):
                 print(root_dir + recordName)
@@ -146,7 +146,7 @@ def trimUnisensdata(dataDir, outputDir, segment_length_in_hours):
                 mkdir_path.mkdir(parents=True, exist_ok=True)
                 record_dir = root_dir + recordName
 
-                location = record_dir + "/" + "0"
+                location = record_dir + "\\" + "0"
 
                 window_length = duration_of_first_record_tillmidnight  # one Day
                 fixed_windod_lenght = duration_of_first_record_tillmidnight  # One Day
@@ -293,7 +293,7 @@ def trimUnisensdata(dataDir, outputDir, segment_length_in_hours):
                             maker_values.append(new_value)
 
                     if (len(maker_values) > 0):
-                        with open(location + "/" + "marker.csv", 'a') as f:
+                        with open(location + "\\" + "marker.csv", 'a') as f:
                             # print(length)
                             df = pd.DataFrame()
                             df['marker'] = maker_values
@@ -309,7 +309,7 @@ def trimUnisensdata(dataDir, outputDir, segment_length_in_hours):
                 start_index = int(duration_of_first_record_tillmidnight)
             else:
                 print("copy it as it is ")
-                location = record_dir + "/" + "0"
+                location = record_dir + "\\" + "0"
                 toDirectory = location
 
                 copy_tree(unisens_input_dir, toDirectory)
@@ -326,8 +326,8 @@ def trimUnisensdata(dataDir, outputDir, segment_length_in_hours):
             remaining_record = remaining_duration % window_length
             # record = 2
             recordName = inner_dir  # u.get_attrib('measurementId')
-            # root_dir = "/Users/deku/Desktop/unisens_data/"
-            root_dir = outputDir + dir + "/"
+            # root_dir = "/Users\\deku\\Desktop\\unisens_data\\"
+            root_dir = outputDir + dir + "\\"
             # create new directory for each subject and place sliced records in each
             if not os.path.exists(root_dir + recordName):
                 print(root_dir + recordName)
@@ -338,9 +338,9 @@ def trimUnisensdata(dataDir, outputDir, segment_length_in_hours):
             window_length = window_length + duration_of_first_record_tillmidnight
             while record <= number_of_record:
                 # print(record_dir + str(record))
-                if not os.path.exists(record_dir + "/" + str(record)):
-                    print(record_dir + "/" + str(record))
-                    location = record_dir + "/" + str(record)
+                if not os.path.exists(record_dir + "\\" + str(record)):
+                    print(record_dir + "\\" + str(record))
+                    location = record_dir + "\\" + str(record)
                     os.mkdir(location)
                     print("Directory ", record, " Created ")
                     # Create new unisens file
@@ -477,7 +477,7 @@ def trimUnisensdata(dataDir, outputDir, segment_length_in_hours):
                                 maker_values.append(new_value)
 
                         if (len(maker_values) > 0):
-                            with open(location + "/" + "marker.csv", 'a') as f:
+                            with open(location + "\\" + "marker.csv", 'a') as f:
                                 # print(length)
                                 df = pd.DataFrame()
                                 df['marker'] = maker_values
@@ -505,7 +505,7 @@ def trimUnisensdata(dataDir, outputDir, segment_length_in_hours):
 
             ##Last record
             recode = record + 1
-            location = record_dir + "/" + str(record)
+            location = record_dir + "\\" + str(record)
 
             newUnisens = unisens.Unisens(location + "-last", duration=remaining_record,
                                          timestampStart=str(startTimestamp),
@@ -628,7 +628,7 @@ def trimUnisensdata(dataDir, outputDir, segment_length_in_hours):
                         maker_values.append(new_value)
 
                 if (len(maker_values) > 0):
-                    with open(location + "-last" + "/" + "marker.csv", 'a') as f:
+                    with open(location + "-last" + "\\" + "marker.csv", 'a') as f:
                         # print(length)
                         df = pd.DataFrame()
                         df['marker'] = maker_values
@@ -646,4 +646,4 @@ def trimUnisensdata(dataDir, outputDir, segment_length_in_hours):
 # record_dir=root_dir+recordName
 
 #trimUnisensdata("/Users/deku/Desktop/unisens_data/raw/", "/Users/deku/Desktop/unisens_data/trimmed/", 24)
-trimUnisensdata("C:/Users/deku/Documents/code/data/orignal/", "C:/Users/deku/Documents/code/data/trimmed/", 24)
+trimUnisensdata("C:\\Users\\deku\\Documents\\code\\data\\orignal\\", "C:\\Users\\deku\\Documents\\code\\data\\trimmed\\", 24)
