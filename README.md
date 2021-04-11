@@ -1,5 +1,5 @@
-# cachet-ecg-db
-Python scripts for CACHET-ECG-DB 
+# CACHET-CADB
+Below we provide the Python scripts and other tools to use the CACHET-CADB
 
 
 
