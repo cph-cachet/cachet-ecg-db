@@ -1,4 +1,4 @@
-# CACHET-CADB
+# CACHET-CADB:  A Contextualized AmbulatoryElectrocardiography Arrhythmia Dataset
 Below we provide the Python scripts and other tools to use the CACHET-CADB
 
 
