@@ -1,6 +1,6 @@
 # CACHET-CADB:  A Contextualized Ambulatory Electrocardiography Arrhythmia Dataset ToolKit
 
-[![github stars](https://img.shields.io/github/stars/cph-cachet/carp.sensing-flutter.svg?style=flat&logo=github&colorB=deeppink&label=stars)](https://github.com/cph-cachet/carp.sensing-flutter)
+[![github stars](https://img.shields.io/github/stars/cph-cachet/carp.sensing-flutter.svg?style=flat&logo=github&colorB=deeppink&label=stars)](https://github.com/cph-cachet/cachet-ecg-db)
 [![MIT License](https://img.shields.io/badge/license-MIT-purple.svg)](https://opensource.org/licenses/MIT)
 
 Below we provide the Python scripts and other tools to use the CACHET-CADB
