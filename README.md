@@ -24,3 +24,13 @@ We provide the [`CACHET-CADB-NoteBook.ipynb`](https://github.com/cph-cachet/cach
 
 The [`cachet-cadb_analysisMain.py`](https://github.com/cph-cachet/cachet-ecg-db/blob/master/cachet-cadb_analysisMain.py) Python script contains funtions to read the database and all the statistics.
 
+## Features and bugs
+
+Please read about existing issues and file new feature requests and bug reports at the [issue tracker][tracker].
+
+[tracker]: https://github.com/cph-cachet/cachet-ecg-db/issues
+
+## License
+
+This software is copyright (c) [Copenhagen Center for Health Technology (CACHET)](https://www.cachet.dk/) at the [Technical University of Denmark (DTU)](https://www.dtu.dk).
+This software is available 'as-is' under a [MIT license](https://github.com/cph-cachet/cachet-ecg-db/blob/master/LICENSE).
