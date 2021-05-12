@@ -3,7 +3,16 @@
 [![github stars](https://img.shields.io/github/stars/cph-cachet/carp.sensing-flutter.svg?style=flat&logo=github&colorB=deeppink&label=stars)](https://github.com/cph-cachet/cachet-ecg-db)
 [![MIT License](https://img.shields.io/badge/license-MIT-purple.svg)](https://opensource.org/licenses/MIT)
 
-Below we provide the Python scripts and other tools to use the CACHET-CADB
+Below we provide the Python scripts and other tools to use the CACHET-CADB.
+
+## CACHET-CADB
+
+CACHET-CADB is 259 days long contextualised single-channel ECG arrhythmia database from 24 patients recording under a free-living ambulatory setting. Along with the ECG, it also contains contextual information such as activities, body position, movement acceleration, patients reported unusual symptoms/events diary, step counts, patient-reported sleep quality, stress level, and food intake. I contain 1602 ten-second long ECG samples of AF, NSR, noise, and other rhythm classes, which are manually annotated by two cardiologists. The ECG is sampled at 1024 Hz and a 12-bit resolution.
+
+The CACHET-CADB is available from DTU Data in two formats:
+
+ * [CACHET-CADB](https://data.dtu.dk/articles/dataset/CACHET-CADB/14547264)
+ * [CACHET-CADB Short Format](https://data.dtu.dk/articles/dataset/CACHET-CADB_Short_Format/14547330)
 
 
 
