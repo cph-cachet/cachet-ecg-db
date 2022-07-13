@@ -47,3 +47,19 @@ Please read about existing issues and file new feature requests and bug reports 
 
 This software is copyright (c) [Copenhagen Center for Health Technology (CACHET)](https://www.cachet.dk/) at the [Technical University of Denmark (DTU)](https://www.dtu.dk).
 This software is available 'as-is' under a [MIT license](https://github.com/cph-cachet/cachet-ecg-db/blob/master/LICENSE).
+
+## Citation 
+
+When using the CACHET-CADB dataset and code, please cite its data descriptor article : 
+
+```
+@article{kumar2022cachet,
+  title={CACHET-CADB: A Contextualized Ambulatory Electrocardiography Arrhythmia Dataset},
+  author={Kumar, Devender and Puthusserypady, Sadasivan and Dominguez, Helena and Sharma, Kamal and Bardram, Jakob E},
+  journal={Frontiers in Cardiovascular Medicine},
+  pages={1702},
+  year={2022},
+  publisher={Frontiers}
+}
+```
+
